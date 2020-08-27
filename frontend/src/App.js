@@ -1,11 +1,17 @@
 import React from 'react';
+import NavBar from './components/NavBar';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
-    <div className='container mx-auto'>
-      <header className="flex justify-center mt-3">
-        <h1 className='font-bold text-xl text-blue-600'>Traffic Offense and Fine Tracker</h1>
-      </header>
+    <div className="bg-gray-100">
+      <NavBar />
+      <div className='container mx-auto h-full'>
+      
+        <header className="flex justify-center mt-3">
+          <SearchBar/>
+        </header>
+      </div>
     </div>
   );
 }
