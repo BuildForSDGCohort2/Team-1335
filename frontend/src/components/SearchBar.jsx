@@ -1,17 +1,62 @@
-import React from 'react'
+import React from 'react';
+//import { demoData } from '../demoData';
+//import {searchBox}  from './search/searchbox';
 
 class SearchBar extends React.Component {
+    constructor(){
+        super();
+        this.items = [
+            'David',
+            'Damien',
+            'Sara',
+            'Jane'
+        ];
+
+        this.state = {
+            searchText: '',
+            suggestions: []
+        }
+
+        this.handleTextChange = this.handleTextChange.bind(this);
+        this.renderSuggestions = this.renderSuggestions.bind(this);
+
+
+    }
+
+    handleTextChange = (e) => {
+        const value = e.target.value;
+        let suggestions = [];
+        if (value.length > 0) {
+            const regex = new RegExp(`^${value}`, 'i');
+            suggestions = this.items.sort().filter(v => regex.test(v));
+        }
+        this.setState(() => ( { suggestions, searchText: value } ));
+
+    }
+   
+    suggestionsSelected (value) {
+        this.setState(() => ({
+            searchText: value,
+            suggestions: []
+        }))
+    }
+        
+     renderSuggestions () {
+        const { suggestions } = this.state;
+        if (suggestions.length === 0) {
+            return null;
+        } return (suggestions.map((item) => <li className="list-none ml-10" onClick={() =>this.suggestionsSelected(item)}>{item}</li>))
+    } 
+       
 
     render(){
+        const { searchText } = this.state;
         return(
-             <div class="w-full max-w-screen-xl mx-auto px-6">
-                <div class="flex justify-center p-4 px-3 py-10">
+            <div class="w-full max-w-screen-xl mx-auto px-6 pl-4">
+                <div class="flex justify-start p-4 px-3 pl-2 py-10">
                     <div class="w-full max-w-md">
-                        <div class="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
-                            <div class="block text-gray-700 text-lg font-semibold py-2 px-2">
-                                Enter You're Driver's License.
-                            </div>
-                            <div class="flex items-center bg-gray-200 rounded-md">
+                        <div class="mb-4">
+                            <div class="flex shadow-md bg-white mb-1 items-center border-gray-400 border rounded-lg h-12">
                                 <div class="pl-2">
                                     <svg class="fill-current text-gray-500 w-6 h-6" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24">
@@ -20,11 +65,20 @@ class SearchBar extends React.Component {
                                     </svg>
                                 </div>
                                 <input
-                                    class="w-full rounded-md bg-gray-200 text-gray-700 leading-tight focus:outline-none py-2 px-2"
-                                    id="search" type="text" placeholder="driver's license"/>
+                                    class="w-full appearance-none rounded-md placeholder-gray-400 focus:placeholder-gray-600 text-gray-700 leading-tight focus:outline-none py-2 px-2"
+                                    name="search"  
+                                    value={ searchText }
+                                    type="text"
+                                    placeholder="Enter driver's license"
+                                    onChange={ this.handleTextChange }
+                                />
+                                
                             </div>
-                            
-                        </div>
+                            <div class="flex shadow-md bg-white flex-col">
+                                   {this.renderSuggestions()}        
+
+                            </div>                            
+                        </div>                        
                     </div>
                 </div>
             </div>

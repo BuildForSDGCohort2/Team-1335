@@ -1,4 +1,4 @@
-const demoData = {
+export const demoData = {
     User1: {
         id:1,
         name: 'Tamale Simon peter',
@@ -53,4 +53,3 @@ const demoData = {
     }
 };
 
-export default demoData;
