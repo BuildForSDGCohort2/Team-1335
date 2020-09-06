@@ -1,7 +1,9 @@
 import React from 'react';
 import NavBar from './components/NavBar';
-import SearchBar from './components/SearchBar';
+//import SearchBar from './components/SearchBar';
 //import resultSearchBar from './components/resultSearchBar';
+import SearchBox from './components/search/searchbox';
+//import AutoComplete from './components/search/AutoComplete';
 
 function App() {
   return (
@@ -15,8 +17,8 @@ function App() {
       <NavBar />
       <div className='container mx-auto h-full'>      
         <header className="flex justify-center mt-3">
-          <SearchBar/>
-          {/* <resultSearchBar /> */}
+          <SearchBox/>
+          
         </header>
       </div>
     </div>
