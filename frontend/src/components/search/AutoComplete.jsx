@@ -1,21 +1,46 @@
 import React from 'react';
-import {demoData} from '../../demoData';
+
 
 class SearchBox extends React.Component {
     constructor(props){
     super(props);
     this.state = {
       wikiSearchReturnValues: [],
-      wikiSearchTerms: ''
+      wikiSearchTerms: '',
+      isLoading: false,
+      error: null,
+      returnedData: []
     }
   }
 
-  
-   = (e) => {
-    if (e.key === 'Enter'){
+  componentDidMount(){
+      fetch('frontend/src/demoData.js')
+      .then(response => response.json())
+      .then((results) => {
+          this.setState({
+            isLoading: true,
+            returnedData: results
+          })
+      })
+  }
+
+  /* useWikiSearchEngine = (e) => {
+    //if (e.key === 'Enter'){
     e.preventDefault();
     
-  }}
+    fetch('frontend/src/demoData.js')
+    .then(response => {
+        response.json().then(data => {
+            this.setState({
+                wikiSearchReturnValues: data
+              });
+              console.log(this.state.wikiSearchReturnValues);
+        })
+    })
+
+    //const pointerToThis = this;
+
+  } */
 
   changeWikiSearchTerms = (e) => {
     this.setState({

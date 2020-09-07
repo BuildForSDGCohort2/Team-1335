@@ -17,10 +17,6 @@ class SearchBar extends React.Component {
             suggestions: []
         }
 
-        this.handleTextChange = this.handleTextChange.bind(this);
-        this.renderSuggestions = this.renderSuggestions.bind(this);
-
-
     }
 
     handleTextChange = (e) => {
@@ -40,12 +36,23 @@ class SearchBar extends React.Component {
             suggestions: []
         }))
     }
+
+    
         
      renderSuggestions () {
         const { suggestions } = this.state;
         if (suggestions.length === 0) {
             return null;
-        } return (suggestions.map((item) => <li className="list-none ml-10" onClick={() =>this.suggestionsSelected(item)}>{item}</li>))
+        } return (suggestions.map((item) =>  
+        
+            <div class="cursor-pointer bg-white shadow-sm w-full border-gray-100 border-b hover:bg-teal-100" >
+                <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100">
+                    <div class="w-6 flex flex-col items-center">
+                        <div className="w-full items-center flex" onClick={() => this.suggestionsSelected(item)}> {item}</div>
+                    </div>
+                </div>
+            </div>       
+        ))
     } 
        
 
@@ -71,14 +78,11 @@ class SearchBar extends React.Component {
                                     type="text"
                                     placeholder="Enter driver's license"
                                     onChange={ this.handleTextChange }
-                                />
-                                
-                            </div>
-                            <div class="flex shadow-md bg-white flex-col">
-                                   {this.renderSuggestions()}        
-
+                                />                                
                             </div>                            
-                        </div>                        
+                            {this.renderSuggestions()}
+                        </div>
+                                          
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ class NavBar extends React.Component {
                   className=" font-medium text-sm block mr-4 leading-none text-gray-900 hover:text-blue-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-gray-600"
+                    className="h-6 w-6 text-gray-400"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -37,7 +37,7 @@ class NavBar extends React.Component {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-gray-600"
+                    className="h-6 w-6 text-gray-400"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
