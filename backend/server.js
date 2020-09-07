@@ -2,12 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const offenseRoutes = require('./routes/offense-routes');
+const HttpError = require('./models/http-error');
 
 const app = express();
 
 
+app.use(bodyParser.json());
+
 //middleWare routes
-app.use('/api/offenses', offenseRoutes);
+app.use('/api/offenses', offenseRoutes); //api/offenses
+
+app.use((req, res, next) => {
+    const error = new HttpError('Could not find this service path.', 404);
+    throw error;
+});
 
 //error handling middleware
 app.use((error, req, res, next) => {
